@@ -1,13 +1,32 @@
-todos = []
+todo_list = []
 
-def add_todo(task):
-    todos.append(task)
+def add_task(task):
+    todo_list.append(task)
+    print("Task added: ", task)
 
-def view_todos():
-    for i, todo in enumerate(todos):
-        print(i+1, todo)
+def view_tasks():
+    print("Current Tasks: ")
+    for i, task in enumerate(todo_list):
+        print(f"{i+1}: {task}")
 
-add_todo("Buy milk")
-add_todo("Finish homework")
-view_todos()
-#added comments
+def remove_task(index):
+    try:
+        task = todo_list.pop(index-1)
+        print("Task removed: ", task)
+    except IndexError:
+        print("Error: Invalid task index")
+
+while True:
+    user_input = input("What would you like to do? (add/view/remove/quit): ")
+    if user_input == "add":
+        task = input("Enter task: ")
+        add_task(task)
+    elif user_input == "view":
+        view_tasks()
+    elif user_input == "remove":
+        task_index = int(input("Enter task index: "))
+        remove_task(task_index)
+    elif user_input == "quit":
+        break
+    else:
+        print("Error: Invalid command")
